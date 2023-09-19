@@ -23,3 +23,10 @@ func LoadEnvFile() {
 
 	log.Print("success load env file")
 }
+
+func GetDbName(dbName string) string {
+	projectName := regexp.MustCompile(`^(.*` + projectDirName + `)`)
+	currentWorkDirectory, _ := os.Getwd()
+	rootPath := projectName.Find([]byte(currentWorkDirectory))
+	return string(rootPath) + dbName
+}
