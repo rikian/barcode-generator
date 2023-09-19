@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/JsBarcode.js"></script>
+</head>
+
+<style>
+    .barcode {
+        width: 41mm;
+        height: 8mm;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .codebar {
+        width: 6.5mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 8px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    img {
+        height: 8mm;
+        width: 26mm;
+    }
+</style>
+
+<body id="body">
+    <h1>List Barcode</h1>
+    <div class="cnBar" id="conbar">
+        <div class="barcode">
+            <div class="codebar">
+                <span>AA</span>
+                <span>123</span>
+                <span>456</span>
+            </div>
+            <img src="" alt="" id="barcode">
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; width: 200px;">
+        <label for="total">Jumlah :</label>
+        <input type="number" id="total">
+        <button id="btnGenBar" onclick="genBar()">Generate barcode</button>
+    </div>
+    
+    <script>
+        var code128 = "AA" + Math.floor(Math.random() * 1000000)
+        JsBarcode("#barcode", code128, {
+            width: 4,
+            height: 40,
+            displayValue: false
+        });
+
+        var total = document.getElementById("total")
+        var cnBar = document.getElementById("conbar")
+
+        function createTmplBarcode(idBarcon, imgBarcode, code128) {
+            var barcon = document.createElement("div")
+            var codebar = document.createElement("div")
+            var text1 = document.createElement("span")
+            var text2 = document.createElement("span")
+            var text3 = document.createElement("span")
+            var imgCode = document.createElement("img")
+            text1.innerText = code128[0] + code128[1]
+            text2.innerText = code128[2] + code128[3] + code128[4]
+            text3.innerText = code128[5] + code128[6] + code128[7]
+
+            barcon.setAttribute("class", "barcode")
+            barcon.setAttribute("id", idBarcon)
+            codebar.setAttribute("class", "codebar")
+            imgCode.setAttribute("id", imgBarcode)
+
+            codebar.appendChild(text1)
+            codebar.appendChild(text2)
+            codebar.appendChild(text3)
+            barcon.appendChild(codebar)
+            barcon.appendChild(imgCode)
+
+            return barcon
+        }
+
+        function genBar() {
+            if (total.value == 0) {
+                return alert("total cannot be empty")
+            }
+
+            for (var i = 1; i <= total.value; i++) {
+                var code128 = "AA" + Math.floor(Math.random() * 1000000)
+                var barcodeTemplate = createTmplBarcode("abc" + i, "AA" + i, code128)
+                cnBar.appendChild(barcodeTemplate)
+                JsBarcode("#AA" + i, code128, {
+                    width: 4,
+                    height: 40,
+                    displayValue: false
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
