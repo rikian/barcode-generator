@@ -1,0 +1,9 @@
+{"level":"info","ts":"2023-09-19T20:55:30.895+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-19T20:56:26.137+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-19T21:10:40.570+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-19T21:16:36.640+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-19T21:34:07.662+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-19T21:34:28.872+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-19T21:35:55.258+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-19T21:37:57.698+0700","caller":"barcode-generator/main.go:48","msg":"Shutdown server ..."}
+{"level":"info","ts":"2023-09-19T21:38:02.700+0700","caller":"barcode-generator/main.go:65","msg":"Server exiting"}
