@@ -5,21 +5,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/JsBarcode.js"></script>
+    <script src="/static/js/JsBarcode.js"></script>
 </head>
 
 <style>
-    .barcode {
-        width: 41mm;
-        height: 8mm;
-        border: 1px solid black;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    header {
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        position: sticky;
+        top: 0;
+        background-color: #111a35;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 10px;
+    }
+
+    .title {
+        /* border: 1px solid black; */
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        color: white;
+    }
+
+    .menus {
+        /* border: 1px solid black; */
         display: flex;
         align-items: center;
+        height: 40px;
+    }
+
+    .menu {
+        /* border: 1px solid rgb(164, 160, 160); */
+        margin-right: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: rgb(202, 202, 213);
+        color: black;
+        cursor: pointer;
+    }
+
+    .menu:hover {
+        border: 1px solid blue;
+    }
+
+    .actv {
+        background-color: blue;
+        color: white;
+    }
+
+    .formgenbar {
+        min-width: 400px;
+        padding: 10px;
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: white;
+        margin-right: 10px;
+    }
+
+    .formgenbar h3 {
+        margin-bottom: 15px;
+    }
+
+    .inpt {
+        /* border: 1px solid black; */
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .inpt label {
+        /* border: 1px solid black; */
+        width: 120px;
+        margin-right: 10px;
+    }
+
+    .inpt input {
+        border: 1px solid rgb(202, 202, 202);
+        height: 30px;
+        outline: none;
+        padding: 5px;
+        font-size: 16px;
         border-radius: 5px;
     }
 
+    .inpt input:focus {
+        border: 1px solid blue;
+    }
+
+    .btn-prev {
+        outline: none;
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgb(73, 73, 200);
+        color: white;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .btn-prev:hover {
+        background-color: blue;
+    }
+
+    .preview-bar {
+        width: 100%;
+        /* border: 1px solid black; */
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    .barcode-wraper {
+        /* border: 1px solid black; */
+        display: flex;
+        height: 8mm;
+        margin-bottom: 5px;
+    }
+
+    .barcode {
+        width: 41mm;
+        height: 8mm;
+        border: 1px solid rgb(230, 227, 227);
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
     .codebar {
-        width: 6.5mm;
+        width: 8mm;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -30,40 +160,156 @@
     }
 
     img {
+        /* border: 1px solid black; */
         height: 8mm;
         width: 26mm;
     }
+
+    .barcode-status {
+        /* border: 1px solid black; */
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+    }
+
+    .barcode-status span {
+        /* border: 1px solid black; */
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .generate-barcode-actions {
+        /* border: 1px solid black; */
+    }
+
+    .condis {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* toggle */
+    .condis.hide {
+        display: none;
+    }
+
+    .condis {
+        display: flex;
+    }
 </style>
 
-<body id="body">
-    <h1>List Barcode</h1>
-    <div class="cnBar" id="conbar">
-        <div class="barcode">
-            <div class="codebar">
-                <span>AA</span>
-                <span>123</span>
-                <span>456</span>
+<body style="background-color: rgb(198, 199, 200);">
+    <header>
+        <div class="title">
+            <h1>Barcode Generator</h1>
+        </div>
+        <ul class="menus">
+            <li onclick="toggleMenu1()" class="menu actv" id="btn-gen-bar">Generator Barcode</li>
+            <li onclick="toggleMenu2()" class="menu" id="btn-rep-his">Report History</li>
+        </ul>
+    </header>
+
+    <!-- generator barcode -->
+    <div class="condis" id="generator-barcode">
+        <!-- form -->
+        <div class="formgenbar" style="height: 300px;">
+            <h3>Form Generator Barcode</h3>
+            <form method="post">
+                <div class="inpt">
+                    <label for="no-mesin">No Mesin :</label>
+                    <input type="text" id="no-mesin" placeholder="AA">
+                </div>
+                <div class="inpt">
+                    <label for="format-barcode">Format Barcode :</label>
+                    <input type="number" id="format-barcode" placeholder="000000">
+                </div>
+                <div class="inpt">
+                    <label for="dimulai">Dimulai :</label>
+                    <input type="number" id="dimulai" placeholder="0">
+                </div>
+                <div class="inpt">
+                    <label for="jumlah">Jumlah :</label>
+                    <input type="number" id="jumlah" placeholder="0">
+                </div>
+            </form>
+
+            <button class="btn-prev">Preview</button>
+        </div>
+        <!-- preview -->
+        <div class="formgenbar preview-bar">
+            <h3>Preview</h3>
+            <div class="cnBar" id="conbar">
+
             </div>
-            <img src="" alt="" id="barcode">
+        </div>
+
+        <!-- action -->
+        <div class="formgenbar generate-barcode-actions" style="height: 300px; margin: 0;">
+            <button class="btn-prev">Print All</button>
+            <button class="btn-prev" style="width: 100px; height: 40px;">Print Availale Only</button>
         </div>
     </div>
-    <div style="display: flex; flex-direction: column; width: 200px;">
-        <label for="total">Jumlah :</label>
-        <input type="number" id="total">
-        <button id="btnGenBar" onclick="genBar()">Generate barcode</button>
+
+    <!-- report history -->
+    <div class="condis hide" id="report-history">
+        <div class="formgenbar">
+            <h3>Report History</h3>
+            <form method="post">
+                <div class="inpt">
+                    <label for="no-mesin">No Mesin :</label>
+                    <input type="text" id="no-mesin" placeholder="aa00000">
+                </div>
+                <div class="inpt">
+                    <label for="dimulai">Periode :</label>
+                    <input type="number" id="start" placeholder="start" style="margin-right: 5px; width: 70px;">
+                    <input type="number" id="end" placeholder="end" style="width: 70px;">
+                </div>
+            </form>
+
+            <button class="btn-prev">Preview</button>
+        </div>
+
+        <!-- preview -->
+        <div class="formgenbar preview-bar">
+            <h3>Preview</h3>
+            <div class="cnBar">
+
+            </div>
+        </div>
     </div>
-    
+
+    <!-- script toggle -->
     <script>
-        var code128 = "AA" + Math.floor(Math.random() * 1000000)
-        JsBarcode("#barcode", code128, {
-            width: 4,
-            height: 40,
-            displayValue: false
-        });
+        var btnGenbar = document.getElementById("btn-gen-bar")
+        var conGenbar = document.getElementById("generator-barcode")
+        var btnReHis = document.getElementById("btn-rep-his")
+        var conReHis = document.getElementById("report-history")
 
-        var total = document.getElementById("total")
-        var cnBar = document.getElementById("conbar")
+        function toggleMenu1() {
+            if (!btnGenbar.classList.contains("actv")) {
+                btnGenbar.classList.add("actv")
+                conGenbar.classList.remove("hide")
 
+                btnReHis.classList.remove("actv")
+                conReHis.classList.add("hide")
+                return
+            }
+        }
+
+        function toggleMenu2() {
+            if (!btnReHis.classList.contains("actv")) {
+                btnGenbar.classList.remove("actv")
+                conGenbar.classList.add("hide")
+
+                btnReHis.classList.add("actv")
+                conReHis.classList.remove("hide")
+                return
+            }
+        }
+
+    </script>
+
+    <!-- script generate barcode -->
+    <script>
         function createTmplBarcode(idBarcon, imgBarcode, code128) {
             var barcon = document.createElement("div")
             var codebar = document.createElement("div")
@@ -101,6 +347,7 @@
                 JsBarcode("#AA" + i, code128, {
                     width: 4,
                     height: 40,
+                    margin: 0,
                     displayValue: false
                 });
             }
@@ -109,3 +356,36 @@
 </body>
 
 </html>
+
+<!-- <div class="cnBar" id="conbar">
+        <div class="barcode">
+            <div class="codebar">
+                <span>AA</span>
+                <span>123</span>
+                <span>456</span>
+            </div>
+            <img src="" alt="" id="barcode">
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; width: 200px;">
+        <label for="total">Jumlah :</label>
+        <input type="number" id="total">
+        <button id="btnGenBar" onclick="genBar()">Generate barcode</button>
+        <button id="print">print</button>
+    </div> -->
+
+<!-- // var pr = document.getElementById("print")
+    // pr.addEventListener("click", function () {
+    //     window.print()
+    // })
+
+    // var code128 = "AA" + Math.floor(Math.random() * 1000000)
+    // JsBarcode("#barcode", code128, {
+    //     width: 1,
+    //     height: 40,
+    //     margin: 0,
+    //     displayValue: false
+    // });
+
+    // var total = document.getElementById("total")
+    // var cnBar = document.getElementById("conbar") -->

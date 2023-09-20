@@ -7,3 +7,4 @@
 {"level":"info","ts":"2023-09-19T21:35:55.258+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}
 {"level":"info","ts":"2023-09-19T21:37:57.698+0700","caller":"barcode-generator/main.go:48","msg":"Shutdown server ..."}
 {"level":"info","ts":"2023-09-19T21:38:02.700+0700","caller":"barcode-generator/main.go:65","msg":"Server exiting"}
+{"level":"info","ts":"2023-09-20T10:49:53.194+0700","caller":"barcode-generator/main.go:35","msg":"Server running at :9091"}

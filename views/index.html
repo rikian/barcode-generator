@@ -9,6 +9,11 @@
 </head>
 
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     .barcode {
         width: 41mm;
         height: 8mm;
@@ -16,6 +21,7 @@
         display: flex;
         align-items: center;
         border-radius: 5px;
+        margin-bottom: 10px;
     }
 
     .codebar {
@@ -30,6 +36,7 @@
     }
 
     img {
+        border: 1px solid black;
         height: 8mm;
         width: 26mm;
     }
@@ -51,13 +58,20 @@
         <label for="total">Jumlah :</label>
         <input type="number" id="total">
         <button id="btnGenBar" onclick="genBar()">Generate barcode</button>
+        <button id="print">print</button>
     </div>
-    
+
     <script>
+        var pr = document.getElementById("print")
+        pr.addEventListener("click", function () {
+            window.print()
+        })
+
         var code128 = "AA" + Math.floor(Math.random() * 1000000)
         JsBarcode("#barcode", code128, {
             width: 4,
             height: 40,
+            margin: 0,
             displayValue: false
         });
 
@@ -101,6 +115,7 @@
                 JsBarcode("#AA" + i, code128, {
                     width: 4,
                     height: 40,
+                    margin: 0,
                     displayValue: false
                 });
             }
