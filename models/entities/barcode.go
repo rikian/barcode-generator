@@ -4,8 +4,8 @@ import "time"
 
 type Barcode struct {
 	ID      uint      `gorm:"not null;unique;primary_key;autoincrement" json:"id"`
-	NoMes   string    `gorm:"not null;unique" json:"nomer_mesin"`
-	Code    int       `gorm:"not null;unique" json:"code"`
+	NoMes   string    `gorm:"not null;" json:"no_mesin"`
+	Code    string    `gorm:"not null;unique" json:"code"`
 	Printed bool      `gorm:"not null;" json:"printed"`
 	Scanned bool      `gorm:"not null;" json:"scanned"`
 	UAt     time.Time `gorm:"type:date;size:128;not null" json:"updated_at"`

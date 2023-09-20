@@ -2,18 +2,12 @@ package gin
 
 import (
 	"barcode/models/constants"
+	"barcode/service"
 	"os"
 
 	g "github.com/gin-gonic/gin"
 
 	"go.uber.org/zap"
-)
-
-var (
-	r *g.Engine
-	h *GinHelper
-	c *GinConntroller
-	m *GinMiddleware
 )
 
 func setupGinEngine() *g.Engine {
@@ -25,21 +19,22 @@ func setupGinEngine() *g.Engine {
 	return gin
 }
 
-func Router(l *zap.Logger) *g.Engine {
-	r = setupGinEngine()
-	h = new(GinHelper)
-	m = new(GinMiddleware)
-	c = new(GinConntroller)
-	h.logger = l
-
-	r.Static("/static/", "./static/")
+func Router(l *zap.Logger, service *service.ServiceBarcode) *g.Engine {
+	r := setupGinEngine()
+	h := new(GinHelper)
+	m := new(GinMiddleware)
+	c := new(GinConntroller)
+	h.logger, m.logger = l, l
+	c.service = service
 
 	// middleware
 	r.Use(m.Middleware)
 
-	r.GET(constants.UrlHome, func(ctx *g.Context) {
-		ctx.HTML(200, "index.html", nil)
-	})
+	r.Static("/static/", "./static/")
+
+	// controller
+	r.GET(constants.UrlHome, c.Home)
+	r.POST(constants.UrlCheckBarcode, c.CheckBarcode)
 
 	return r
 }

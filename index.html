@@ -30,6 +30,7 @@
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 10px;
+        height: 100px;
     }
 
     .title {
@@ -173,9 +174,13 @@
     }
 
     .barcode-status span {
+        width: 80px;
         /* border: 1px solid black; */
         padding-left: 20px;
         padding-right: 20px;
+        display: flex;
+        justify-content: center;
+        margin-right: 5px;
     }
 
     .generate-barcode-actions {
@@ -195,6 +200,11 @@
     .condis {
         display: flex;
     }
+
+    .stick {
+        position: sticky;
+        top: 120px;
+    }
 </style>
 
 <body style="background-color: rgb(198, 199, 200);">
@@ -211,7 +221,7 @@
     <!-- generator barcode -->
     <div class="condis" id="generator-barcode">
         <!-- form -->
-        <div class="formgenbar" style="height: 300px;">
+        <div class="formgenbar stick" style="height: 300px;">
             <h3>Form Generator Barcode</h3>
             <form method="post">
                 <div class="inpt">
@@ -232,18 +242,73 @@
                 </div>
             </form>
 
-            <button class="btn-prev">Preview</button>
+            <button class="btn-prev" onclick="previewBarcode()">Preview</button>
         </div>
+
         <!-- preview -->
         <div class="formgenbar preview-bar">
             <h3>Preview</h3>
-            <div class="cnBar" id="conbar">
+            <div class="cnBar">
+                <div class="barcode-wraper">
+                    <div class="barcode" style="border: none;"></div>
 
+                    <div class="barcode-status">
+                        <span>printed</span>
+                        <span>scanned</span>
+                    </div>
+                </div>
+                <div class="cbbtnr" id="container-barcode"></div>
             </div>
+
+            <script>
+                function createTmplBarcode(idBarconWrapper, imgBarcode, code128) {
+                    // create codebar
+                    var codebar = document.createElement("div")
+                    codebar.setAttribute("class", "codebar")
+                    var text1 = document.createElement("span")
+                    text1.innerText = code128[0] + code128[1]
+                    codebar.appendChild(text1)
+                    var text2 = document.createElement("span")
+                    text2.innerText = code128[2] + code128[3] + code128[4]
+                    codebar.appendChild(text2)
+                    var text3 = document.createElement("span")
+                    text3.innerText = code128[5] + code128[6] + code128[7]
+                    codebar.appendChild(text3)
+
+                    // barcode image
+                    var imgCode = document.createElement("img")
+                    imgCode.setAttribute("id", imgBarcode)
+
+                    // barcode
+                    var barcode = document.createElement("div")
+                    barcode.setAttribute("class", "barcode")
+                    barcode.appendChild(codebar)
+                    barcode.appendChild(imgCode)
+
+                    // barcode status
+                    var barcodeStatus = document.createElement("div")
+                    barcodeStatus.setAttribute("class", "barcode-status")
+                    var barcodeStatus1 = document.createElement("span")
+                    barcodeStatus.appendChild(barcodeStatus1)
+                    barcodeStatus1.innerText = "-"
+                    var barcodeStatus2 = document.createElement("span")
+                    barcodeStatus2.innerText = "-"
+                    barcodeStatus.appendChild(barcodeStatus2)
+
+                    // barcode wrapper
+                    var barcodeWraper = document.createElement("div")
+                    barcodeWraper.setAttribute("class", "barcode-wraper")
+                    barcodeWraper.setAttribute("id", idBarconWrapper)
+                    barcodeWraper.appendChild(barcode)
+                    barcodeWraper.appendChild(barcodeStatus)
+
+                    return barcodeWraper
+                }
+            </script>
         </div>
 
         <!-- action -->
-        <div class="formgenbar generate-barcode-actions" style="height: 300px; margin: 0;">
+        <div class="formgenbar stick generate-barcode-actions" style="height: 300px; margin: 0;">
             <button class="btn-prev">Print All</button>
             <button class="btn-prev" style="width: 100px; height: 40px;">Print Availale Only</button>
         </div>
@@ -272,7 +337,6 @@
         <div class="formgenbar preview-bar">
             <h3>Preview</h3>
             <div class="cnBar">
-
             </div>
         </div>
     </div>
@@ -310,48 +374,121 @@
 
     <!-- script generate barcode -->
     <script>
-        function createTmplBarcode(idBarcon, imgBarcode, code128) {
-            var barcon = document.createElement("div")
-            var codebar = document.createElement("div")
-            var text1 = document.createElement("span")
-            var text2 = document.createElement("span")
-            var text3 = document.createElement("span")
-            var imgCode = document.createElement("img")
-            text1.innerText = code128[0] + code128[1]
-            text2.innerText = code128[2] + code128[3] + code128[4]
-            text3.innerText = code128[5] + code128[6] + code128[7]
+        var containerBarcode = document.getElementById("container-barcode")
+        var xhr = new XMLHttpRequest()
 
-            barcon.setAttribute("class", "barcode")
-            barcon.setAttribute("id", idBarcon)
-            codebar.setAttribute("class", "codebar")
-            imgCode.setAttribute("id", imgBarcode)
+        function generateBarcode() {
+            var noMesin = document.getElementById("no-mesin").value
+            if (noMesin.length != 2) {
+                alert("Nomer mesin harus dua digit")
+                return false
+            }
+            var formatBarcode = document.getElementById("format-barcode").value
+            if (formatBarcode.length != 6) {
+                alert("Format barcode harus 6 (enam) digit")
+                return false
+            }
+            var dimulaiDari = parseInt(document.getElementById("dimulai").value)
+            var jumlah = parseInt(document.getElementById("jumlah").value)
 
-            codebar.appendChild(text1)
-            codebar.appendChild(text2)
-            codebar.appendChild(text3)
-            barcon.appendChild(codebar)
-            barcon.appendChild(imgCode)
-
-            return barcon
-        }
-
-        function genBar() {
-            if (total.value == 0) {
-                return alert("total cannot be empty")
+            if (jumlah == 0) {
+                alert("Jumlah tidak boleh kosong")
+                return false
             }
 
-            for (var i = 1; i <= total.value; i++) {
-                var code128 = "AA" + Math.floor(Math.random() * 1000000)
-                var barcodeTemplate = createTmplBarcode("abc" + i, "AA" + i, code128)
-                cnBar.appendChild(barcodeTemplate)
-                JsBarcode("#AA" + i, code128, {
-                    width: 4,
-                    height: 40,
-                    margin: 0,
-                    displayValue: false
-                });
+            // get actual format barcode
+            var currentBarcode = ""
+            for (var i = 0; i < formatBarcode.length; i++) {
+                if (i + 1 == formatBarcode.length) {
+                    currentBarcode += 0
+                    currentBarcode = parseInt(currentBarcode)
+                }
+
+                if (formatBarcode[i] != 0) {
+                    for (var j = i; j < formatBarcode.length; j++) {
+                        currentBarcode += formatBarcode[j]
+                        currentBarcode = parseInt(currentBarcode)
+                    }
+
+                    break
+                }
+            }
+
+            if (typeof noMesin !== "string" || typeof currentBarcode !== "number" || typeof dimulaiDari !== "number" || typeof jumlah !== "number") {
+                alert("Scan barcode error")
+                return false
+            }
+
+            // generate barcode
+            currentBarcode += dimulaiDari
+            var actualBarcode = []
+            for (var k = 0; k < jumlah; k++) {
+                currentBarcode += 1
+                switch (currentBarcode.toString().length) {
+                    case 1:
+                        actualBarcode.push({
+                            "no_mesin": noMesin,
+                            "code": noMesin + "00000" + currentBarcode
+                        })
+                        break
+                    case 2:
+                        actualBarcode.push({
+                            "no_mesin": noMesin,
+                            "code": noMesin + "0000" + currentBarcode
+                        })
+                        break
+                    case 3:
+                        actualBarcode.push({
+                            "no_mesin": noMesin,
+                            "code": noMesin + "000" + currentBarcode
+                        })
+                        break
+                    case 4:
+                        actualBarcode.push({
+                            "no_mesin": noMesin,
+                            "code": noMesin + "00" + currentBarcode
+                        })
+                        break
+                    case 5:
+                        actualBarcode.push({
+                            "no_mesin": noMesin,
+                            "code": noMesin + "0" + currentBarcode
+                        })
+                        break
+                    case 6:
+                        actualBarcode.push({
+                            "no_mesin": noMesin,
+                            "code": noMesin + currentBarcode
+                        })
+                        break
+                    default:
+                        alert("Scan barcode error")
+                        return false
+                }
+            }
+
+            return actualBarcode
+        }
+
+        function previewBarcode() {
+            var dataBarcode = generateBarcode()
+
+            if (!dataBarcode) {
+                return
+            }
+
+            // check list barcode to db
+            xhr.open("POST", "/api/check-barcode/", true)
+            xhr.send(JSON.stringify({
+                "data_barcode" : dataBarcode
+            }))
+
+            xhr.onload = function(e) {
+                console.log(this.responseText)
             }
         }
+
+
     </script>
 </body>
 
@@ -388,4 +525,30 @@
     // });
 
     // var total = document.getElementById("total")
-    // var cnBar = document.getElementById("conbar") -->
+    // var cnBar = document.getElementById("conbar") 
+// console.log(actualFormatBarcode)
+            // console.log(noMesin)
+            // console.log(formatBarcode)
+            // console.log(dimulaiDari)
+            // console.log(jumlah)
+
+            // var barcodeWraper = createTmplBarcode("0", "0", "12345678")
+
+            // containerBarcode.appendChild(barcodeWraper)
+
+
+            // if (total.value == 0) {
+            //     return alert("total cannot be empty")
+            // }
+
+            // for (var i = 1; i <= total.value; i++) {
+            //     var code128 = "AA" + Math.floor(Math.random() * 1000000)
+            //     var barcodeTemplate = createTmplBarcode("abc" + i, "AA" + i, code128)
+            //     cnBar.appendChild(barcodeTemplate)
+            //     JsBarcode("#AA" + i, code128, {
+            //         width: 4,
+            //         height: 40,
+            //         margin: 0,
+            //         displayValue: false
+            //     });
+            // }-->

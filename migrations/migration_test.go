@@ -19,4 +19,8 @@ func TestMigration(t *testing.T) {
 		err := migrations.Down(dbConn)
 		assert.Nil(t, err)
 	})
+
+	t.Run("test create fakedata", func(t *testing.T) {
+		migrations.SeedFakeDataBarcode(dbConn)
+	})
 }

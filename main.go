@@ -3,6 +3,8 @@ package main
 import (
 	"barcode/app/gin"
 	"barcode/config"
+	"barcode/db"
+	"barcode/service"
 	"context"
 	"log"
 	"net/http"
@@ -17,10 +19,18 @@ import (
 func main() {
 	config.LoadEnvFile()
 	logger := config.BuildLogger()
+
 	// create connection to sqlitedb
+	dbConn := db.ConnectionToSql3()
+
+	// initial repository
+	repo := db.NewBarcodeRepository(dbConn, logger)
+
+	// initial service
+	service := service.NewServiceBarcode(logger, repo)
 
 	// initial router
-	router := gin.Router(logger)
+	router := gin.Router(logger, service)
 
 	port := ":9091"
 
