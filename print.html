@@ -267,7 +267,7 @@
         z-index: 99999;
     }
 
-    .loader-text{
+    .loader-text {
         left: 50%;
         top: 50%;
         position: absolute;
@@ -296,6 +296,10 @@
             transform: rotate(360deg);
         }
     }
+
+    .hboer{
+        border: none;
+    }
 </style>
 
 <body style="background-color: rgb(198, 199, 200);">
@@ -306,90 +310,70 @@
     </div>
 
     <!-- Print barcode -->
-    <div class="wraper-print">
-        <div class="cbbtnr" id="container-barcode"><div class="barcode-wraper" id="abc0"><div class="barcode"><div class="codebar" id="abc0"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc1"><div class="barcode"><div class="codebar" id="abc1"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc2"><div class="barcode"><div class="codebar" id="abc2"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc3"><div class="barcode"><div class="codebar" id="abc3"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc4"><div class="barcode"><div class="codebar" id="abc4"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA4" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc5"><div class="barcode"><div class="codebar" id="abc5"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc6"><div class="barcode"><div class="codebar" id="abc6"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc7"><div class="barcode"><div class="codebar" id="abc7"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA7" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc8"><div class="barcode"><div class="codebar" id="abc8"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA8" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div><div class="barcode-wraper" id="abc9"><div class="barcode"><div class="codebar" id="abc9"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA9" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg=="></div><div class="barcode-status"><span>false</span><span>false</span></div></div></div>
-    </div>
-
-    <header>
-        <div class="title">
-            <h1>Barcode Generator V1.0</h1>
-        </div>
-    </header>
-
-    <!-- preview -->
-    <div class="preview-barcode" id="preview-barcode">
-        <div class="formgenbar preview-bar">
-            <div class="pheader">
-                <h3>Preview</h3>
-                <div class="generate-barcode-actions">
-                    <button class="btn-prev btn-fix">Print All</button>
-                    <button class="btn-prev btn-fix" style="width: 150px;">Print Availale Only</button>
-                    <button onclick="showMain()" class="btn-prev btn-fix" id="close-prev">Close</button>
+    <div class="wraper-print" style="background-color: white;">
+        <div id="container-barcode">
+            <div class="barcode-wraper" id="abc0">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc0"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA0"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
                 </div>
             </div>
-
-            <div class="cnBar">
-                <div class="barcode-wraper">
-                    <div class="barcode" style="border: none"></div>
-                    <div class="barcode-status">
-                        <span>Printed</span>
-                        <span>Scanned</span>
-                    </div>
+            <div class="barcode-wraper" id="abc1">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc1"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA1"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
                 </div>
-                <div class="cbbtnr" id="container-barcode"></div>
+            </div>
+            <div class="barcode-wraper" id="abc2">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc2"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA2"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
+            </div>
+            <div class="barcode-wraper" id="abc3">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc3"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA3"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
+            </div>
+            <div class="barcode-wraper" id="abc4">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc4"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA4"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
+            </div>
+            <div class="barcode-wraper" id="abc5">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc5"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA5"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
+            </div>
+            <div class="barcode-wraper" id="abc6">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc6"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA6"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
+            </div>
+            <div class="barcode-wraper" id="abc7">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc7"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA7"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
+            </div>
+            <div class="barcode-wraper" id="abc8">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc8"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA8"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
+            </div>
+            <div class="barcode-wraper" id="abc9">
+                <div class="barcode hboer">
+                    <div class="codebar" id="abc9"><span>AA</span><span>000</span><span>NaN</span></div><img id="AA9"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAAoCAYAAADe3YUmAAAAAXNSR0IArs4c6QAAAZ5JREFUeF7t3N2SgjAMBeDy/g/NDj+FGFKWUXevPi8Ukak1bZKTk4NTa21uy9M8t2ma1tflEY/XE+Fc/mx538f45Nr+HX2MPqc4dp7jt6/tv6X6PXd2qmyQbRbnGu0Ux83Hd3YdzTHPs89tWSWLnTbyk0XJTmGxU7SIntuNlaNI9qxsRJ69Rd9RNM2RLl7Ls1PaEsbl7BdPqrCNMC6MH0D3acQA0PZq4T/y+9NFAdD2/Pdumab0OkvYu00HoBUI9R3kzrMBNACtYoEwaBsDWdnhCVkDoAFow82TySmkyk6HZkNEbrnndzlbzpaz5eyzO4hBw6Bh0EY9WqQKUmXNFpWo4i/aoQAagAagAWgA2roHYt1aFf6UKpurRBRfHY/wDaVKEj5qhLxKmMiSyJJIiavwGZsUxAvEC0eJqOuVAEk2CFIFqYJUGUTMUarJ6cYdIQPkjkHDoGHQMGgYNAzaISK6bobfSjoaNF0vGjQtzrP1Oypb3cV5c0MBNA6NQ+PQODQOjUPj12Y9bpx44fAL/5a0maJS9VCqUKpcHCU6zA9iv6DiwNae/gAAAABJRU5ErkJggg==">
+                </div>
             </div>
         </div>
     </div>
-
-    <main id="root" style="display: flex;">
-        <!-- generator barcode -->
-        <div class="condis" id="generator-barcode">
-            <!-- form -->
-            <div class="formgenbar" style="height: 300px;">
-                <h3>Form Generator Barcode</h3>
-                <form method="post">
-                    <div class="inpt">
-                        <label for="no-mesin">No Mesin :</label>
-                        <input type="text" id="no-mesin" placeholder="AA">
-                    </div>
-                    <div class="inpt">
-                        <label for="format-barcode">Format Barcode :</label>
-                        <input type="number" id="format-barcode" placeholder="000000">
-                    </div>
-                    <div class="inpt">
-                        <label for="dimulai">Dimulai :</label>
-                        <input type="number" id="dimulai" placeholder="0">
-                    </div>
-                    <div class="inpt">
-                        <label for="jumlah">Jumlah :</label>
-                        <input type="number" id="jumlah" placeholder="0">
-                    </div>
-                </form>
-
-                <button class="btn-prev" onclick="previewBarcode()">Preview</button>
-            </div>
-        </div>
-
-        <!-- report history -->
-        <div class="condis" id="report-history">
-            <div class="formgenbar">
-                <h3>Report History</h3>
-                <form method="post">
-                    <div class="inpt">
-                        <label for="no-mesin">No Mesin :</label>
-                        <input type="text" id="no-mesin" placeholder="aa00000">
-                    </div>
-                    <div class="inpt">
-                        <label for="dimulai">Periode :</label>
-                        <input type="number" id="start" placeholder="start" style="margin-right: 5px; width: 70px;">
-                        <input type="number" id="end" placeholder="end" style="width: 70px;">
-                    </div>
-                </form>
-
-                <button class="btn-prev">Preview</button>
-            </div>
-        </div>
-    </main>
 
     <!-- script generate barcode -->
     <script>
@@ -420,7 +404,7 @@
 
             if (!dataBarcode) {
                 offLoader()
-                return 
+                return
             }
 
             root.style.display = "none"

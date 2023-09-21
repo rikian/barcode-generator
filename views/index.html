@@ -22,22 +22,18 @@
     header {
         /* border: 1px solid black; */
         display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-        position: sticky;
-        top: 0;
+        align-items: center;
+        justify-content: center;
         background-color: #111a35;
         padding-left: 20px;
         padding-right: 20px;
-        padding-bottom: 10px;
-        height: 100px;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        height: 60px;
     }
 
     .title {
         /* border: 1px solid black; */
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
         color: white;
     }
 
@@ -76,11 +72,13 @@
         border-radius: 5px;
         margin-bottom: 10px;
         background-color: white;
-        margin-right: 10px;
     }
 
     .formgenbar h3 {
-        margin-bottom: 15px;
+        width: 100%;
+        /* border: 1px solid black; */
+        text-align: center;
+        height: 30px;
     }
 
     .inpt {
@@ -112,7 +110,7 @@
     .btn-prev {
         outline: none;
         width: 80px;
-        height: 30px;
+        height: 40px;
         border-radius: 5px;
         border: none;
         background-color: rgb(73, 73, 200);
@@ -130,6 +128,7 @@
         /* border: 1px solid black; */
         background-color: white;
         border-radius: 5px;
+        height: 100%;
     }
 
     .barcode-wraper {
@@ -185,6 +184,8 @@
 
     .generate-barcode-actions {
         /* border: 1px solid black; */
+        display: flex;
+        justify-content: center;
     }
 
     .condis {
@@ -205,178 +206,245 @@
         position: sticky;
         top: 120px;
     }
+
+    .cnBar {
+        /* width: 100%; */
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cbbtnr {
+        border: 1px solid rgb(225, 224, 224);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .pheader {
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        position: sticky;
+        top: 0px;
+        background-color: white;
+        box-shadow: 1px 2px 1px 1px rgb(227, 227, 231);
+    }
+
+    .btn-fix {
+        margin: 0;
+        margin-right: 10px;
+        font-size: 14px;
+        height: 30px;
+    }
+
+    .preview-barcode {
+        display: none;
+    }
+
+    .body-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: rgb(128, 128, 128);
+        opacity: 0.3;
+        z-index: 9999;
+    }
+
+    .loader {
+        border: 10px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 10px solid blue;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 0.5s linear infinite;
+        animation: spin 0.5s linear infinite;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        z-index: 99999;
+    }
+
+    .loader-text {
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        margin-top: 60px;
+        font-size: 14px;
+        font-weight: bold;
+        z-index: 99999;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 
-<body style="background-color: rgb(198, 199, 200);">
-    <header>
-        <div class="title">
-            <h1>Barcode Generator</h1>
-        </div>
-        <ul class="menus">
-            <li onclick="toggleMenu1()" class="menu actv" id="btn-gen-bar">Generator Barcode</li>
-            <li onclick="toggleMenu2()" class="menu" id="btn-rep-his">Report History</li>
-        </ul>
-    </header>
+<body id="body" style="background-color: rgb(198, 199, 200);">
+    <div class="wrboddd" id="loader">
+        <div class="body-wrapper"></div>
+        <div class="loader"></div>
+        <span class="loader-text" id="loader-text">Loading ...</span>
+    </div>
 
-    <!-- generator barcode -->
-    <div class="condis" id="generator-barcode">
-        <!-- form -->
-        <div class="formgenbar stick" style="height: 300px;">
-            <h3>Form Generator Barcode</h3>
-            <form method="post">
-                <div class="inpt">
-                    <label for="no-mesin">No Mesin :</label>
-                    <input type="text" id="no-mesin" placeholder="AA">
-                </div>
-                <div class="inpt">
-                    <label for="format-barcode">Format Barcode :</label>
-                    <input type="number" id="format-barcode" placeholder="000000">
-                </div>
-                <div class="inpt">
-                    <label for="dimulai">Dimulai :</label>
-                    <input type="number" id="dimulai" placeholder="0">
-                </div>
-                <div class="inpt">
-                    <label for="jumlah">Jumlah :</label>
-                    <input type="number" id="jumlah" placeholder="0">
-                </div>
-            </form>
+    <!-- print container -->
+    <div id="container-print"></div>
 
-            <button class="btn-prev" onclick="previewBarcode()">Preview</button>
-        </div>
-
+    <div id="container-main">
+        <header id="header">
+            <div class="title">
+                <h1>Barcode Generator V1.0</h1>
+            </div>
+        </header>
+    
         <!-- preview -->
-        <div class="formgenbar preview-bar">
-            <h3>Preview</h3>
-            <div class="cnBar">
-                <div class="barcode-wraper">
-                    <div class="barcode" style="border: none;"></div>
-
-                    <div class="barcode-status">
-                        <span>printed</span>
-                        <span>scanned</span>
+        <div class="preview-barcode" id="preview-barcode">
+            <div class="formgenbar preview-bar" id="prevfriounk">
+                <div class="pheader" id="print-preview-header">
+                    <h3>Preview</h3>
+                    <div class="generate-barcode-actions">
+                        <button class="btn-prev btn-fix" id="print-all" onclick="printAll()">Print All</button>
+                        <button class="btn-prev btn-fix" style="width: 150px;">Print Availale Only</button>
+                        <button onclick="showMain()" class="btn-prev btn-fix" id="close-prev">Close</button>
                     </div>
                 </div>
-                <div class="cbbtnr" id="container-barcode"></div>
-            </div>
-
-            <script>
-                function createTmplBarcode(idBarconWrapper, imgBarcode, code128, printed, scanned) {
-                    // create codebar
-                    var codebar = document.createElement("div")
-                    codebar.setAttribute("class", "codebar")
-                    codebar.setAttribute("id", idBarconWrapper)
-                    var text1 = document.createElement("span")
-                    text1.innerText = code128[0] + code128[1]
-                    codebar.appendChild(text1)
-                    var text2 = document.createElement("span")
-                    text2.innerText = code128[2] + code128[3] + code128[4]
-                    codebar.appendChild(text2)
-                    var text3 = document.createElement("span")
-                    text3.innerText = code128[5] + code128[6] + code128[7]
-                    codebar.appendChild(text3)
-
-                    // barcode image
-                    var imgCode = document.createElement("img")
-                    imgCode.setAttribute("id", imgBarcode)
-
-                    // barcode
-                    var barcode = document.createElement("div")
-                    barcode.setAttribute("class", "barcode")
-                    barcode.appendChild(codebar)
-                    barcode.appendChild(imgCode)
-
-                    // barcode status
-                    var barcodeStatus = document.createElement("div")
-                    barcodeStatus.setAttribute("class", "barcode-status")
-                    var barcodeStatus1 = document.createElement("span")
-                    barcodeStatus.appendChild(barcodeStatus1)
-                    barcodeStatus1.innerText = printed
-                    var barcodeStatus2 = document.createElement("span")
-                    barcodeStatus2.innerText = scanned
-                    barcodeStatus.appendChild(barcodeStatus2)
-
-                    // barcode wrapper
-                    var barcodeWraper = document.createElement("div")
-                    barcodeWraper.setAttribute("class", "barcode-wraper")
-                    barcodeWraper.setAttribute("id", idBarconWrapper)
-                    barcodeWraper.appendChild(barcode)
-                    barcodeWraper.appendChild(barcodeStatus)
-
-                    return barcodeWraper
-                }
-            </script>
-        </div>
-
-        <!-- action -->
-        <div class="formgenbar stick generate-barcode-actions" style="height: 300px; margin: 0;">
-            <button class="btn-prev">Print All</button>
-            <button class="btn-prev" style="width: 100px; height: 40px;">Print Availale Only</button>
-        </div>
-    </div>
-
-    <!-- report history -->
-    <div class="condis hide" id="report-history">
-        <div class="formgenbar">
-            <h3>Report History</h3>
-            <form method="post">
-                <div class="inpt">
-                    <label for="no-mesin">No Mesin :</label>
-                    <input type="text" id="no-mesin" placeholder="aa00000">
+    
+                <div class="cnBar" id="cnBar-container">
+                    <div class="barcode-wraper" id="header-barcode-wr">
+                        <div class="barcode" style="border: none"></div>
+                        <div class="barcode-status">
+                            <span>Printed</span>
+                            <span>Scanned</span>
+                        </div>
+                    </div>
+    
+                    <div class="cbbtnr" id="container-barcode"></div>
                 </div>
-                <div class="inpt">
-                    <label for="dimulai">Periode :</label>
-                    <input type="number" id="start" placeholder="start" style="margin-right: 5px; width: 70px;">
-                    <input type="number" id="end" placeholder="end" style="width: 70px;">
-                </div>
-            </form>
-
-            <button class="btn-prev">Preview</button>
-        </div>
-
-        <!-- preview -->
-        <div class="formgenbar preview-bar">
-            <h3>Preview</h3>
-            <div class="cnBar">
             </div>
         </div>
+    
+        <main id="root" style="display: flex;">
+            <!-- generator barcode -->
+            <div class="condis" id="generator-barcode">
+                <!-- form -->
+                <div class="formgenbar" style="height: 300px;">
+                    <h3>Form Generator Barcode</h3>
+                    <form method="post">
+                        <div class="inpt">
+                            <label for="no-mesin">No Mesin :</label>
+                            <input type="text" id="no-mesin" placeholder="AA" value="AA">
+                        </div>
+                        <div class="inpt">
+                            <label for="format-barcode">Format Barcode :</label>
+                            <input type="number" id="format-barcode" placeholder="000000" value="009988">
+                        </div>
+                        <div class="inpt">
+                            <label for="dimulai">Dimulai :</label>
+                            <input type="number" id="dimulai" placeholder="0">
+                        </div>
+                        <div class="inpt">
+                            <label for="jumlah">Jumlah :</label>
+                            <input type="number" id="jumlah" placeholder="0" value="10">
+                        </div>
+                    </form>
+    
+                    <button class="btn-prev" onclick="previewBarcode()">Preview</button>
+                </div>
+    
+                <!-- action -->
+            </div>
+    
+            <!-- report history -->
+            <div class="condis" id="report-history">
+                <div class="formgenbar">
+                    <h3>Report History</h3>
+                    <form method="post">
+                        <div class="inpt">
+                            <label for="no-mesin">No Mesin :</label>
+                            <input type="text" id="no-mesin" placeholder="aa00000">
+                        </div>
+                        <div class="inpt">
+                            <label for="dimulai">Periode :</label>
+                            <input type="number" id="start" placeholder="start" style="margin-right: 5px; width: 70px;">
+                            <input type="number" id="end" placeholder="end" style="width: 70px;">
+                        </div>
+                    </form>
+    
+                    <button class="btn-prev">Preview</button>
+                </div>
+            </div>
+        </main>
     </div>
-
-    <!-- script toggle -->
-    <script>
-        var btnGenbar = document.getElementById("btn-gen-bar")
-        var conGenbar = document.getElementById("generator-barcode")
-        var btnReHis = document.getElementById("btn-rep-his")
-        var conReHis = document.getElementById("report-history")
-
-        function toggleMenu1() {
-            if (!btnGenbar.classList.contains("actv")) {
-                btnGenbar.classList.add("actv")
-                conGenbar.classList.remove("hide")
-
-                btnReHis.classList.remove("actv")
-                conReHis.classList.add("hide")
-                return
-            }
-        }
-
-        function toggleMenu2() {
-            if (!btnReHis.classList.contains("actv")) {
-                btnGenbar.classList.remove("actv")
-                conGenbar.classList.add("hide")
-
-                btnReHis.classList.add("actv")
-                conReHis.classList.remove("hide")
-                return
-            }
-        }
-
-    </script>
 
     <!-- script generate barcode -->
     <script>
         var containerBarcode = document.getElementById("container-barcode")
         var xhr = new XMLHttpRequest()
+        var conPreviewBarcode = document.getElementById("preview-barcode")
+        var root = document.getElementById("root")
+        var closePrev = document.getElementById("close-prev")
+        var loader = document.getElementById("loader")
+
+        function offLoader() {
+            loader.style.display = "none"
+        }
+
+        function onLoader() {
+            loader.style.display = "block"
+        }
+
+        function showMain() {
+            conPreviewBarcode.style.display = "none"
+            root.style.display = "flex"
+        }
+
+        function previewBarcode() {
+            containerBarcode.innerHTML = ""
+            var dataBarcode = generateBarcode()
+            onLoader()
+
+            if (!dataBarcode) {
+                offLoader()
+                return
+            }
+
+            root.style.display = "none"
+            conPreviewBarcode.style.display = "block"
+
+            // check list barcode to db
+            xhr.open("POST", "/api/check-barcode/", true)
+            xhr.send(JSON.stringify({
+                "data_barcode": dataBarcode
+            }))
+
+            xhr.onload = function () {
+                showBarcode(JSON.parse(this.responseText))
+                return offLoader()
+            }
+
+            xhr.onerror = function () {
+                alert("Something wrong!!\nplease reload your browser or contact your IT support...")
+                return offLoader()
+            }
+        }
 
         function generateBarcode() {
             var noMesin = document.getElementById("no-mesin").value
@@ -392,7 +460,7 @@
             var dimulaiDari = parseInt(document.getElementById("dimulai").value)
             var jumlah = parseInt(document.getElementById("jumlah").value)
 
-            if (jumlah == 0) {
+            if (!jumlah || jumlah < 1) {
                 alert("Jumlah tidak boleh kosong")
                 return false
             }
@@ -453,28 +521,6 @@
             return actualBarcode
         }
 
-        function previewBarcode() {
-            var dataBarcode = generateBarcode()
-
-            if (!dataBarcode) {
-                return
-            }
-
-            // check list barcode to db
-            xhr.open("POST", "/api/check-barcode/", true)
-            xhr.send(JSON.stringify({
-                "data_barcode": dataBarcode
-            }))
-
-            xhr.onload = function () {
-                showBarcode(JSON.parse(this.responseText))
-            }
-
-            xhr.onerror = function () {
-                alert("Something wrong!!\nplease reload your browser or contact your IT support...")
-            }
-        }
-
         function showBarcode(data) {
             if (data.code != 200 || data.msg != "OK") {
                 return alert("failed check barcode")
@@ -492,6 +538,75 @@
                     displayValue: false
                 });
             }
+        }
+    </script>
+
+    <!-- create barcode template -->
+    <script>
+        function createTmplBarcode(idBarconWrapper, imgBarcode, code128, printed, scanned) {
+            // create codebar
+            var codebar = document.createElement("div")
+            codebar.setAttribute("class", "codebar")
+            codebar.setAttribute("id", idBarconWrapper)
+            var text1 = document.createElement("span")
+            text1.innerText = code128[0] + code128[1]
+            codebar.appendChild(text1)
+            var text2 = document.createElement("span")
+            text2.innerText = code128[2] + code128[3] + code128[4]
+            codebar.appendChild(text2)
+            var text3 = document.createElement("span")
+            text3.innerText = code128[5] + code128[6] + code128[7]
+            codebar.appendChild(text3)
+
+            // barcode image
+            var imgCode = document.createElement("img")
+            imgCode.setAttribute("id", imgBarcode)
+
+            // barcode
+            var barcode = document.createElement("div")
+            barcode.setAttribute("class", "barcode")
+            barcode.appendChild(codebar)
+            barcode.appendChild(imgCode)
+
+            // barcode status
+            var barcodeStatus = document.createElement("div")
+            barcodeStatus.setAttribute("class", "barcode-status")
+            var barcodeStatus1 = document.createElement("span")
+            barcodeStatus.appendChild(barcodeStatus1)
+            barcodeStatus1.innerText = printed
+            var barcodeStatus2 = document.createElement("span")
+            barcodeStatus2.innerText = scanned
+            barcodeStatus.appendChild(barcodeStatus2)
+
+            // barcode wrapper
+            var barcodeWraper = document.createElement("div")
+            barcodeWraper.setAttribute("class", "barcode-wraper")
+            barcodeWraper.setAttribute("id", idBarconWrapper)
+            barcodeWraper.appendChild(barcode)
+            barcodeWraper.appendChild(barcodeStatus)
+
+            return barcodeWraper
+        }
+
+        offLoader()
+    </script>
+
+    <!-- print -->
+    <script>
+        function printAll() {
+            document.getElementById("container-main").style.display = "none"
+            document.getElementById("body").style.backgroundColor = "white"
+            var cPrint = document.getElementById("container-print")
+            var children = containerBarcode.children
+            console.log(children[0].children[0])
+            for (var i = 0; i < children.length; i++) {
+                children[i].children[0].style.border = "none"
+                cPrint.appendChild(children[i].children[0])
+            }
+            window.onafterprint = function() {
+                window.location.reload()
+            }
+            window.print()
         }
     </script>
 </body>
