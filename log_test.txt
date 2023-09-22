@@ -90,3 +90,65 @@
 {"level":"info","ts":"2023-09-22T23:50:19.180+0700","caller":"gin/middleware.go:34","msg":"/"}
 {"level":"info","ts":"2023-09-22T23:50:20.292+0700","caller":"gin/middleware.go:34","msg":"/api/check-barcode/"}
 {"level":"info","ts":"2023-09-22T23:50:34.366+0700","caller":"gin/middleware.go:34","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-22T23:56:04.677+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-22T23:56:32.629+0700","caller":"gin/middleware.go:34","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:19:30.890+0700","caller":"gin/middleware.go:34","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:19:33.267+0700","caller":"gin/middleware.go:34","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:19:39.651+0700","caller":"gin/middleware.go:34","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:19:40.984+0700","caller":"gin/middleware.go:34","msg":"/api/update-barcode/"}
+{"level":"info","ts":"2023-09-23T00:19:54.085+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T00:20:08.262+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:20:21.918+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:20:37.641+0700","caller":"gin/middleware.go:23","msg":"/api/update-barcode/"}
+{"level":"error","ts":"2023-09-23T00:21:18.286+0700","caller":"gin/middleware.go:38","msg":"","stacktrace":"barcode/app/gin.(*GinMiddleware).errorResponse\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/middleware.go:38\nruntime.gopanic\n\t/usr/local/go/src/runtime/panic.go:890\nbarcode/db.(*BarcodeRepository).InsertBarcode.func1\n\t/home/rikian/Documents/projects/barcode-generator/db/repository.go:56\nruntime.gopanic\n\t/usr/local/go/src/runtime/panic.go:890\nbarcode/db.(*BarcodeRepository).InsertBarcode\n\t/home/rikian/Documents/projects/barcode-generator/db/repository.go:73\nbarcode/service.(*ServiceBarcode).UpdateBarcode\n\t/home/rikian/Documents/projects/barcode-generator/service/service.go:87\nbarcode/app/gin.(*GinConntroller).UpdateBarcode\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/controller.go:38\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\nbarcode/app/gin.(*GinMiddleware).Middleware\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/middleware.go:24\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.CustomRecoveryWithWriter.func1\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.LoggerWithConfig.func1\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2936\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1995"}
+{"level":"info","ts":"2023-09-23T00:29:47.966+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T00:29:48.803+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:29:51.124+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:29:55.207+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T00:31:04.080+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:31:06.868+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:31:11.340+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T00:31:18.344+0700","caller":"gin/middleware.go:23","msg":"/api/update-barcode/"}
+{"level":"info","ts":"2023-09-23T00:31:22.557+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:31:26.466+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:31:32.292+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T00:32:03.616+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T00:32:03.868+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:32:08.194+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:32:13.052+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T00:32:16.194+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:32:20.298+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:32:22.819+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T00:59:32.192+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T00:59:34.839+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:59:46.162+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T00:59:50.083+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T00:59:57.977+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:00:07.259+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:00:11.553+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:00:15.452+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:08:50.290+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T01:08:55.182+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:09:02.948+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:09:27.836+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:09:57.430+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:10:30.593+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T01:10:40.455+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:10:42.616+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:10:52.094+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:11:25.901+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:11:32.677+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:11:34.735+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:11:39.838+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:11:48.928+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:11:53.331+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:12:00.447+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:12:04.010+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:12:07.856+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:12:17.829+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:12:24.929+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:12:26.303+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:12:32.330+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:12:37.986+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:12:44.331+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:12:57.900+0700","caller":"gin/middleware.go:23","msg":"/"}

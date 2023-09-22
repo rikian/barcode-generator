@@ -365,7 +365,7 @@
                         </div>
                         <div class="inpt">
                             <label for="format-barcode">Format Barcode :</label>
-                            <input type="number" id="format-barcode" placeholder="000000" value="009990">
+                            <input type="number" id="format-barcode" placeholder="000000" value="000000">
                         </div>
                         <div class="inpt">
                             <label for="dimulai">Dimulai :</label>
@@ -588,10 +588,8 @@
             var barcodeStatus1 = document.createElement("span")
             barcodeStatus.appendChild(barcodeStatus1)
             barcodeStatus1.innerText = printed ? "printed" : "-"
-            barcodeStatus1.style.color = printed ? "gray" : "black"
             var barcodeStatus2 = document.createElement("span")
             barcodeStatus2.innerText = scanned ? "scanned" : "-"
-            barcodeStatus2.style.color = scanned ? "green" : "black"
             barcodeStatus.appendChild(barcodeStatus2)
 
             // barcode wrapper
@@ -653,6 +651,7 @@
     <!-- print available only -->
     <script>
         function printAvailableOnly() {
+            "usestrict"
             var cb = containerBarcode.children
             var dataBarcode = []
             for (var i = 0; i < cb.length; i++) {
@@ -668,6 +667,7 @@
             }))
 
             xhr.onload = function () {
+                "usestrict"
                 var data = JSON.parse(this.responseText)
                 if (data.code != 200 || data.msg != "OK") {
                     return alert("failed check barcode")
@@ -679,17 +679,23 @@
                 document.getElementById("container-main").style.display = "none"
                 document.getElementById("body").style.backgroundColor = "white"
                 var cPrint = document.getElementById("container-print")
-                for (var i = 0; i < cb.length; i++) {
-                    var barcodeAvailable = cb[i].children[0].children[1]
-
-                    if (barcodeAvailable.id == data.data_barcode[i].no_mesin + data.data_barcode[i].code) {
-                        cb[i].children[0].style.border = "none"
-                        cPrint.appendChild(cb[i].children[0])
-                        continue
+                var swap = 0
+                for (var i = 0; i < data.data_barcode.length; i++) {
+                    var nomes = data.data_barcode[i].no_mesin
+                    var code = data.data_barcode[i].code
+                    for (var j = swap; j < cb.length; j++) {
+                        var barcodeAvailable = cb[j].children[0].children[1]
+                        if (barcodeAvailable.id == nomes + code) {
+                            cb[j].children[0].style.border = "none"
+                            cPrint.appendChild(cb[j].children[0])
+                            cb[swap], cb[j] = cb[j], cb[swap]
+                            swap += 1
+                            continue
+                        }
                     }
                 }
 
-                window.onafterprint = function() {
+                window.onafterprint = function () {
                     window.location.reload()
                 }
 

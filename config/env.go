@@ -1,6 +1,7 @@
 package config
 
 import (
+	"barcode/models/constants"
 	"log"
 	"os"
 	"regexp"
@@ -9,10 +10,8 @@ import (
 )
 
 // for more information, see --> https://github.com/joho/godotenv/issues/43#issuecomment-503183127
-const projectDirName = "barcode-generator"
-
 func LoadEnvFile() {
-	projectName := regexp.MustCompile(`^(.*` + projectDirName + `)`)
+	projectName := regexp.MustCompile(`^(.*` + constants.ProjectDirName + `)`)
 	currentWorkDirectory, _ := os.Getwd()
 	rootPath := projectName.Find([]byte(currentWorkDirectory))
 	err := godotenv.Load(string(rootPath) + `/.env`)
@@ -25,7 +24,7 @@ func LoadEnvFile() {
 }
 
 func GetDbName(dbName string) string {
-	projectName := regexp.MustCompile(`^(.*` + projectDirName + `)`)
+	projectName := regexp.MustCompile(`^(.*` + constants.ProjectDirName + `)`)
 	currentWorkDirectory, _ := os.Getwd()
 	rootPath := projectName.Find([]byte(currentWorkDirectory))
 	return string(rootPath) + dbName

@@ -2,6 +2,7 @@ package db
 
 import (
 	"barcode/models/entities"
+	"barcode/models/exceptions"
 	"context"
 	"fmt"
 
@@ -62,11 +63,11 @@ func (c *BarcodeRepository) InsertBarcode(ctx context.Context, listBarcode []*en
 	insertData := tx.Create(listBarcode)
 
 	if insertData.Error != nil {
-		panic(insertData.Error.Error())
+		panic(exceptions.ServerError{Msg: insertData.Error.Error()})
 	}
 
 	if insertData.RowsAffected != sumData {
-		panic(fmt.Sprintf("insertData not equal %v", sumData))
+		panic(exceptions.ServerError{Msg: fmt.Sprintf("insertData not equal %v", sumData)})
 	}
 }
 

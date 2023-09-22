@@ -2,6 +2,7 @@ package db
 
 import (
 	"barcode/config"
+	"barcode/models/constants"
 	"log"
 	"os"
 
@@ -9,10 +10,8 @@ import (
 	"gorm.io/gorm"
 )
 
-const DbName = "/barcode.db"
-
 func ConnectionToSql3() *gorm.DB {
-	db, err := gorm.Open(sqlite.Open(config.GetDbName(DbName)), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open(config.GetDbName(constants.DbName)), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal(err.Error())
@@ -23,7 +22,7 @@ func ConnectionToSql3() *gorm.DB {
 }
 
 func CreateDatabase() {
-	db := config.GetDbName(DbName)
+	db := config.GetDbName(constants.DbName)
 	os.Remove(db)
 	log.Printf("creating databse %v ...", db)
 	file, err := os.Create(db)
