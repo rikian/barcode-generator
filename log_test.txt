@@ -152,3 +152,45 @@
 {"level":"info","ts":"2023-09-23T01:12:37.986+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
 {"level":"info","ts":"2023-09-23T01:12:44.331+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
 {"level":"info","ts":"2023-09-23T01:12:57.900+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:17:02.910+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T01:17:04.109+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:17:28.375+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:17:36.100+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:18:02.376+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:18:04.652+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:18:08.364+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:18:12.715+0700","caller":"gin/middleware.go:23","msg":"/api/update-barcode/"}
+{"level":"info","ts":"2023-09-23T01:18:15.806+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:18:20.167+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:18:25.361+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:18:47.651+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:18:52.678+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:19:11.324+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:19:15.421+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:19:39.970+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:19:43.898+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:20:04.734+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:20:09.230+0700","caller":"gin/middleware.go:23","msg":"/api/update-barcode/"}
+{"level":"info","ts":"2023-09-23T01:20:17.072+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:20:19.099+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:20:22.341+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:20:36.531+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:20:47.210+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:20:59.445+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:21:19.939+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:21:33.035+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:21:48.893+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:21:55.545+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:21:59.256+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"error","ts":"2023-09-23T01:21:59.260+0700","caller":"gin/middleware.go:47","msg":"UNIQUE constraint failed: barcodes.code","stacktrace":"barcode/app/gin.(*GinMiddleware).errorResponse\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/middleware.go:47\nruntime.gopanic\n\t/usr/local/go/src/runtime/panic.go:890\nbarcode/db.(*BarcodeRepository).InsertBarcode.func1\n\t/home/rikian/Documents/projects/barcode-generator/db/repository.go:56\nruntime.gopanic\n\t/usr/local/go/src/runtime/panic.go:890\nbarcode/db.(*BarcodeRepository).InsertBarcode\n\t/home/rikian/Documents/projects/barcode-generator/db/repository.go:66\nbarcode/service.(*ServiceBarcode).UpdateBarcodeAvailableOnly\n\t/home/rikian/Documents/projects/barcode-generator/service/service.go:125\nbarcode/app/gin.(*GinConntroller).UpdateAvailableBarcode\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/controller.go:46\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\nbarcode/app/gin.(*GinMiddleware).Middleware\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/middleware.go:24\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.CustomRecoveryWithWriter.func1\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.LoggerWithConfig.func1\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2936\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1995"}
+{"level":"info","ts":"2023-09-23T01:22:07.062+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"error","ts":"2023-09-23T01:22:07.077+0700","caller":"gin/middleware.go:47","msg":"UNIQUE constraint failed: barcodes.code","stacktrace":"barcode/app/gin.(*GinMiddleware).errorResponse\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/middleware.go:47\nruntime.gopanic\n\t/usr/local/go/src/runtime/panic.go:890\nbarcode/db.(*BarcodeRepository).InsertBarcode.func1\n\t/home/rikian/Documents/projects/barcode-generator/db/repository.go:56\nruntime.gopanic\n\t/usr/local/go/src/runtime/panic.go:890\nbarcode/db.(*BarcodeRepository).InsertBarcode\n\t/home/rikian/Documents/projects/barcode-generator/db/repository.go:66\nbarcode/service.(*ServiceBarcode).UpdateBarcodeAvailableOnly\n\t/home/rikian/Documents/projects/barcode-generator/service/service.go:125\nbarcode/app/gin.(*GinConntroller).UpdateAvailableBarcode\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/controller.go:46\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\nbarcode/app/gin.(*GinMiddleware).Middleware\n\t/home/rikian/Documents/projects/barcode-generator/app/gin/middleware.go:24\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.CustomRecoveryWithWriter.func1\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.LoggerWithConfig.func1\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240\ngithub.com/gin-gonic/gin.(*Context).Next\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP\n\t/home/rikian/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576\nnet/http.serverHandler.ServeHTTP\n\t/usr/local/go/src/net/http/server.go:2936\nnet/http.(*conn).serve\n\t/usr/local/go/src/net/http/server.go:1995"}
+{"level":"info","ts":"2023-09-23T01:23:14.826+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T01:25:44.077+0700","caller":"barcode-generator/main.go:45","msg":"Server running at :9091"}
+{"level":"info","ts":"2023-09-23T01:25:46.562+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:25:48.558+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:25:49.989+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:25:52.698+0700","caller":"gin/middleware.go:23","msg":"/"}
+{"level":"info","ts":"2023-09-23T01:25:57.216+0700","caller":"gin/middleware.go:23","msg":"/api/check-barcode/"}
+{"level":"info","ts":"2023-09-23T01:25:59.627+0700","caller":"gin/middleware.go:23","msg":"/api/available-barcode/"}
+{"level":"info","ts":"2023-09-23T01:26:07.118+0700","caller":"gin/middleware.go:23","msg":"/"}
