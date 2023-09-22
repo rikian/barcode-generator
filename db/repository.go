@@ -21,7 +21,7 @@ type BarcodeRepository struct {
 	db     *gorm.DB
 }
 
-func (c *BarcodeRepository) CheckBarcode(ctx context.Context, req []string) []*entities.Barcode {
+func (c *BarcodeRepository) CheckBarcode(ctx context.Context, req [][]string) []*entities.Barcode {
 	tx := c.db.Begin()
 	if tx.Error != nil {
 		panic(tx.Error.Error())
@@ -38,11 +38,11 @@ func (c *BarcodeRepository) CheckBarcode(ctx context.Context, req []string) []*e
 	}()
 
 	var dataBarcode []*entities.Barcode
-	tx.Where("code IN ?", req).Find(&dataBarcode)
+	tx.Where("(no_mes, code) IN ?", req).Find(&dataBarcode)
 	return dataBarcode
 }
 
-func (c *BarcodeRepository) InsertBarcode(ctx context.Context, b ...*entities.Barcode) {
+func (c *BarcodeRepository) InsertBarcode(ctx context.Context, listBarcode []*entities.Barcode) {
 	tx := c.db.Begin()
 	if tx.Error != nil {
 		panic(tx.Error.Error())
@@ -58,16 +58,15 @@ func (c *BarcodeRepository) InsertBarcode(ctx context.Context, b ...*entities.Ba
 		}
 	}()
 
-	id := tx.Create(b)
+	sumData := int64(len(listBarcode))
+	insertData := tx.Create(listBarcode)
 
-	if id.Error != nil {
-		panic(id.Error.Error())
+	if insertData.Error != nil {
+		panic(insertData.Error.Error())
 	}
 
-	ra := int64(len(b))
-
-	if id.RowsAffected != ra {
-		panic(fmt.Sprintf("insertData not equal %v", ra))
+	if insertData.RowsAffected != sumData {
+		panic(fmt.Sprintf("insertData not equal %v", sumData))
 	}
 }
 

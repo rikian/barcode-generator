@@ -7,6 +7,12 @@ import (
 	"go.uber.org/zap"
 )
 
+func NewGinMiddleware(logger *zap.Logger) *GinMiddleware {
+	return &GinMiddleware{
+		logger: logger,
+	}
+}
+
 type GinMiddleware struct {
 	logger *zap.Logger
 }

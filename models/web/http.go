@@ -1,17 +1,25 @@
 package web
 
-type RequestCheckBarcode struct {
-	Data []string `json:"data_barcode"`
-}
+import "barcode/models/entities"
 
-type DataResponseCheckBarcode struct {
-	Code    string `gorm:"not null;unique" json:"code"`
-	Printed bool   `gorm:"not null;" json:"printed"`
-	Scanned bool   `gorm:"not null;" json:"scanned"`
+type DataBarcode struct {
+	ListBarcode [][]string `json:"list_barcode"`
 }
 
 type ResponseCheckBarcode struct {
-	Code int                         `json:"code"`
-	Msg  string                      `json:"msg"`
-	Data []*DataResponseCheckBarcode `json:"data_barcode"`
+	Code int                 `json:"code"`
+	Msg  string              `json:"msg"`
+	Data []*entities.Barcode `json:"data_barcode"`
+}
+
+type ResponseUpdateBarcode struct {
+	Code int                 `json:"code"`
+	Msg  string              `json:"msg"`
+	Data []*entities.Barcode `json:"data_barcode"`
+}
+
+type ResponseUpdateAvailableBarcode struct {
+	Code int                 `json:"code"`
+	Msg  string              `json:"msg"`
+	Data []*entities.Barcode `json:"data_barcode"`
 }

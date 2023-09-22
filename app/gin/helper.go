@@ -8,6 +8,12 @@ import (
 	"go.uber.org/zap"
 )
 
+func NewGinHelper(logger *zap.Logger) *GinHelper {
+	return &GinHelper{
+		logger: logger,
+	}
+}
+
 type GinHelper struct {
 	logger *zap.Logger
 }

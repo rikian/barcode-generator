@@ -27,7 +27,7 @@ func SeedFakeDataBarcode(dbConn *gorm.DB) {
 	data := []*entities.Barcode{
 		{
 			NoMes:   "AA",
-			Code:    "AA009995",
+			Code:    "009995",
 			Printed: true,
 			Scanned: false,
 			UAt:     time.Now(),
@@ -35,7 +35,7 @@ func SeedFakeDataBarcode(dbConn *gorm.DB) {
 		},
 		{
 			NoMes:   "AA",
-			Code:    "AA009996",
+			Code:    "009996",
 			Printed: true,
 			Scanned: false,
 			UAt:     time.Now(),
@@ -43,7 +43,7 @@ func SeedFakeDataBarcode(dbConn *gorm.DB) {
 		},
 		{
 			NoMes:   "AA",
-			Code:    "AA009997",
+			Code:    "009997",
 			Printed: true,
 			Scanned: false,
 			UAt:     time.Now(),
@@ -51,7 +51,7 @@ func SeedFakeDataBarcode(dbConn *gorm.DB) {
 		},
 		{
 			NoMes:   "AA",
-			Code:    "AA009998",
+			Code:    "009998",
 			Printed: true,
 			Scanned: false,
 			UAt:     time.Now(),
@@ -59,7 +59,7 @@ func SeedFakeDataBarcode(dbConn *gorm.DB) {
 		},
 		{
 			NoMes:   "AA",
-			Code:    "AA009999",
+			Code:    "009999",
 			Printed: true,
 			Scanned: false,
 			UAt:     time.Now(),
@@ -67,7 +67,7 @@ func SeedFakeDataBarcode(dbConn *gorm.DB) {
 		},
 		{
 			NoMes:   "AA",
-			Code:    "AA010000",
+			Code:    "010000",
 			Printed: true,
 			Scanned: false,
 			UAt:     time.Now(),

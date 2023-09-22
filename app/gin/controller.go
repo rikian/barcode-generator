@@ -7,6 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func NewGinConntroller(helper *GinHelper, service *service.ServiceBarcode) *GinConntroller {
+	return &GinConntroller{
+		helper:  helper,
+		service: service,
+	}
+}
+
 type GinConntroller struct {
 	helper  *GinHelper
 	service *service.ServiceBarcode
@@ -17,13 +24,25 @@ func (g *GinConntroller) Home(ctx *gin.Context) {
 }
 
 func (g *GinConntroller) CheckBarcode(ctx *gin.Context) {
-	request := &web.RequestCheckBarcode{
-		Data: []string{},
-	}
+	request := &web.DataBarcode{}
 	g.helper.ReadRequestBody(ctx, request)
-	response := &web.ResponseCheckBarcode{
-		Data: make([]*web.DataResponseCheckBarcode, len(request.Data)),
-	}
-	g.service.CheckBarcode(ctx, request, response)
+	response := &web.ResponseCheckBarcode{}
+	g.service.CheckBarcode(ctx, request.ListBarcode, response)
+	ctx.JSON(response.Code, response)
+}
+
+func (g *GinConntroller) UpdateBarcode(ctx *gin.Context) {
+	request := &web.DataBarcode{}
+	g.helper.ReadRequestBody(ctx, request)
+	response := &web.ResponseUpdateBarcode{}
+	g.service.UpdateBarcode(ctx, request.ListBarcode, response)
+	ctx.JSON(response.Code, response)
+}
+
+func (g *GinConntroller) UpdateAvailableBarcode(ctx *gin.Context) {
+	request := &web.DataBarcode{}
+	g.helper.ReadRequestBody(ctx, request)
+	response := &web.ResponseUpdateAvailableBarcode{}
+	g.service.UpdateBarcodeAvailableOnly(ctx, request.ListBarcode, response)
 	ctx.JSON(response.Code, response)
 }

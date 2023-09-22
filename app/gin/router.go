@@ -19,22 +19,23 @@ func setupGinEngine() *g.Engine {
 	return gin
 }
 
-func Router(l *zap.Logger, service *service.ServiceBarcode) *g.Engine {
+func Router(l *zap.Logger, s *service.ServiceBarcode) *g.Engine {
 	r := setupGinEngine()
-	h := new(GinHelper)
-	m := new(GinMiddleware)
-	c := new(GinConntroller)
-	h.logger, m.logger = l, l
-	c.service = service
+	h := NewGinHelper(l)
+	m := NewGinMiddleware(l)
+	c := NewGinConntroller(h, s)
 
 	// middleware
 	r.Use(m.Middleware)
 
+	// serve static
 	r.Static("/static/", "./static/")
 
 	// controller
 	r.GET(constants.UrlHome, c.Home)
 	r.POST(constants.UrlCheckBarcode, c.CheckBarcode)
+	r.POST(constants.UrlUpdateBarcode, c.UpdateBarcode)
+	r.POST(constants.UrlAvailableBarcode, c.UpdateAvailableBarcode)
 
 	return r
 }

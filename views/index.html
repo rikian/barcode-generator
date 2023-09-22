@@ -296,7 +296,17 @@
             transform: rotate(360deg);
         }
     }
+
+    #status-barcode-for-printed {
+        color: rgb(226, 40, 40);
+    }
 </style>
+
+<script>
+    var urlCheckBarcode = "/api/check-barcode/"
+    var urlUpdateBarcode = "/api/update-barcode/"
+    var urlAvailableBarcode = "/api/available-barcode/"
+</script>
 
 <body id="body" style="background-color: rgb(198, 199, 200);">
     <div class="wrboddd" id="loader">
@@ -314,7 +324,7 @@
                 <h1>Barcode Generator V1.0</h1>
             </div>
         </header>
-    
+
         <!-- preview -->
         <div class="preview-barcode" id="preview-barcode">
             <div class="formgenbar preview-bar" id="prevfriounk">
@@ -322,12 +332,14 @@
                     <h3>Preview</h3>
                     <div class="generate-barcode-actions">
                         <button class="btn-prev btn-fix" id="print-all" onclick="printAll()">Print All</button>
-                        <button class="btn-prev btn-fix" style="width: 150px;">Print Availale Only</button>
+                        <button class="btn-prev btn-fix" style="width: 150px;" onclick="printAvailableOnly()">Print
+                            Availale Only</button>
                         <button onclick="showMain()" class="btn-prev btn-fix" id="close-prev">Close</button>
                     </div>
                 </div>
-    
+
                 <div class="cnBar" id="cnBar-container">
+                    <span id="status-barcode-for-printed"></span>
                     <div class="barcode-wraper" id="header-barcode-wr">
                         <div class="barcode" style="border: none"></div>
                         <div class="barcode-status">
@@ -335,12 +347,11 @@
                             <span>Scanned</span>
                         </div>
                     </div>
-    
                     <div class="cbbtnr" id="container-barcode"></div>
                 </div>
             </div>
         </div>
-    
+
         <main id="root" style="display: flex;">
             <!-- generator barcode -->
             <div class="condis" id="generator-barcode">
@@ -354,24 +365,24 @@
                         </div>
                         <div class="inpt">
                             <label for="format-barcode">Format Barcode :</label>
-                            <input type="number" id="format-barcode" placeholder="000000" value="009988">
+                            <input type="number" id="format-barcode" placeholder="000000" value="009990">
                         </div>
                         <div class="inpt">
                             <label for="dimulai">Dimulai :</label>
-                            <input type="number" id="dimulai" placeholder="0">
+                            <input type="number" id="dimulai" placeholder="0" value="0">
                         </div>
                         <div class="inpt">
                             <label for="jumlah">Jumlah :</label>
                             <input type="number" id="jumlah" placeholder="0" value="10">
                         </div>
                     </form>
-    
+
                     <button class="btn-prev" onclick="previewBarcode()">Preview</button>
                 </div>
-    
+
                 <!-- action -->
             </div>
-    
+
             <!-- report history -->
             <div class="condis" id="report-history">
                 <div class="formgenbar">
@@ -387,7 +398,7 @@
                             <input type="number" id="end" placeholder="end" style="width: 70px;">
                         </div>
                     </form>
-    
+
                     <button class="btn-prev">Preview</button>
                 </div>
             </div>
@@ -427,12 +438,11 @@
             }
 
             root.style.display = "none"
-            conPreviewBarcode.style.display = "block"
 
             // check list barcode to db
-            xhr.open("POST", "/api/check-barcode/", true)
+            xhr.open("POST", urlCheckBarcode, true)
             xhr.send(JSON.stringify({
-                "data_barcode": dataBarcode
+                "list_barcode": dataBarcode
             }))
 
             xhr.onload = function () {
@@ -448,16 +458,17 @@
 
         function generateBarcode() {
             var noMesin = document.getElementById("no-mesin").value
-            if (noMesin.length != 2) {
+            if (!noMesin || noMesin.length != 2) {
                 alert("Nomer mesin harus dua digit")
                 return false
             }
             var formatBarcode = document.getElementById("format-barcode").value
-            if (formatBarcode.length != 6) {
+            if (!formatBarcode || formatBarcode.length != 6) {
                 alert("Format barcode harus 6 (enam) digit")
                 return false
             }
             var dimulaiDari = parseInt(document.getElementById("dimulai").value)
+
             var jumlah = parseInt(document.getElementById("jumlah").value)
 
             if (!jumlah || jumlah < 1) {
@@ -495,22 +506,22 @@
                 currentBarcode += 1
                 switch (currentBarcode.toString().length) {
                     case 1:
-                        actualBarcode.push(noMesin + "00000" + currentBarcode)
+                        actualBarcode.push([noMesin, "00000" + currentBarcode])
                         break
                     case 2:
-                        actualBarcode.push(noMesin + "0000" + currentBarcode)
+                        actualBarcode.push([noMesin, "0000" + currentBarcode])
                         break
                     case 3:
-                        actualBarcode.push(noMesin + "000" + currentBarcode)
+                        actualBarcode.push([noMesin, "000" + currentBarcode])
                         break
                     case 4:
-                        actualBarcode.push(noMesin + "00" + currentBarcode)
+                        actualBarcode.push([noMesin, "00" + currentBarcode])
                         break
                     case 5:
-                        actualBarcode.push(noMesin + "0" + currentBarcode)
+                        actualBarcode.push([noMesin, "0" + currentBarcode])
                         break
                     case 6:
-                        actualBarcode.push(noMesin + currentBarcode)
+                        actualBarcode.push([noMesin, "" + currentBarcode])
                         break
                     default:
                         alert("Scan barcode error")
@@ -529,38 +540,41 @@
             containerBarcode.innerHTML = ""
 
             for (var i = 0; i < data.data_barcode.length; i++) {
-                var barcodeTemplate = createTmplBarcode("abc" + i, "AA" + i, data.data_barcode[i].code, data.data_barcode[i].printed, data.data_barcode[i].scanned)
+                var barcodeTemplate = createTmplBarcode("abc" + i, data.data_barcode[i].no_mesin, data.data_barcode[i].code, data.data_barcode[i].printed, data.data_barcode[i].scanned)
+                var idImgBarcode = data.data_barcode[i].no_mesin + data.data_barcode[i].code
                 containerBarcode.appendChild(barcodeTemplate)
-                JsBarcode("#AA" + i, data.data_barcode[i].code, {
+                JsBarcode("#" + idImgBarcode, idImgBarcode, {
                     width: 1,
                     height: 40,
                     margin: 0,
                     displayValue: false
                 });
             }
+
+            conPreviewBarcode.style.display = "block"
         }
     </script>
 
     <!-- create barcode template -->
     <script>
-        function createTmplBarcode(idBarconWrapper, imgBarcode, code128, printed, scanned) {
+        function createTmplBarcode(idBarconWrapper, nomesin, codeBarcode, printed, scanned) {
             // create codebar
             var codebar = document.createElement("div")
             codebar.setAttribute("class", "codebar")
             codebar.setAttribute("id", idBarconWrapper)
             var text1 = document.createElement("span")
-            text1.innerText = code128[0] + code128[1]
+            text1.innerText = nomesin
             codebar.appendChild(text1)
             var text2 = document.createElement("span")
-            text2.innerText = code128[2] + code128[3] + code128[4]
+            text2.innerText = codeBarcode[0] + codeBarcode[1] + codeBarcode[2]
             codebar.appendChild(text2)
             var text3 = document.createElement("span")
-            text3.innerText = code128[5] + code128[6] + code128[7]
+            text3.innerText = codeBarcode[3] + codeBarcode[4] + codeBarcode[5]
             codebar.appendChild(text3)
 
             // barcode image
             var imgCode = document.createElement("img")
-            imgCode.setAttribute("id", imgBarcode)
+            imgCode.setAttribute("id", nomesin + codeBarcode)
 
             // barcode
             var barcode = document.createElement("div")
@@ -573,9 +587,11 @@
             barcodeStatus.setAttribute("class", "barcode-status")
             var barcodeStatus1 = document.createElement("span")
             barcodeStatus.appendChild(barcodeStatus1)
-            barcodeStatus1.innerText = printed
+            barcodeStatus1.innerText = printed ? "printed" : "-"
+            barcodeStatus1.style.color = printed ? "gray" : "black"
             var barcodeStatus2 = document.createElement("span")
-            barcodeStatus2.innerText = scanned
+            barcodeStatus2.innerText = scanned ? "scanned" : "-"
+            barcodeStatus2.style.color = scanned ? "green" : "black"
             barcodeStatus.appendChild(barcodeStatus2)
 
             // barcode wrapper
@@ -591,22 +607,100 @@
         offLoader()
     </script>
 
-    <!-- print -->
+    <!-- print all-->
     <script>
         function printAll() {
-            document.getElementById("container-main").style.display = "none"
-            document.getElementById("body").style.backgroundColor = "white"
-            var cPrint = document.getElementById("container-print")
-            var children = containerBarcode.children
-            console.log(children[0].children[0])
-            for (var i = 0; i < children.length; i++) {
-                children[i].children[0].style.border = "none"
-                cPrint.appendChild(children[i].children[0])
+            var cb = containerBarcode.children
+            var dataBarcode = []
+            for (var i = 0; i < cb.length; i++) {
+                var nomes = cb[i].children[0].children[0].children[0].innerText
+                var code = cb[i].children[0].children[0].children[1].innerText + cb[i].children[0].children[0].children[2].innerText
+                dataBarcode.push([nomes, code])
             }
-            window.onafterprint = function() {
-                window.location.reload()
+
+            // check list barcode to db
+            xhr.open("POST", urlUpdateBarcode, true)
+            xhr.send(JSON.stringify({
+                "list_barcode": dataBarcode
+            }))
+
+            xhr.onload = function () {
+                var data = JSON.parse(this.responseText)
+                if (data.code != 200 || data.msg != "OK") {
+                    return alert("failed check barcode")
+                }
+                document.getElementById("container-main").style.display = "none"
+                document.getElementById("body").style.backgroundColor = "white"
+                var cPrint = document.getElementById("container-print")
+                for (var i = 0; i < cb.length; i++) {
+                    cb[i].children[0].style.border = "none"
+                    cPrint.appendChild(cb[i].children[0])
+                }
+                window.onafterprint = function (e) {
+                    window.location.reload()
+                }
+                window.print()
+                return
             }
-            window.print()
+
+            xhr.onerror = function () {
+                alert("Something wrong!!\nplease reload your browser or contact your IT support...")
+                return
+            }
+        }
+    </script>
+
+    <!-- print available only -->
+    <script>
+        function printAvailableOnly() {
+            var cb = containerBarcode.children
+            var dataBarcode = []
+            for (var i = 0; i < cb.length; i++) {
+                var nomes = cb[i].children[0].children[0].children[0].innerText
+                var code = cb[i].children[0].children[0].children[1].innerText + cb[i].children[0].children[0].children[2].innerText
+                dataBarcode.push([nomes, code])
+            }
+
+            // check list barcode to db
+            xhr.open("POST", urlAvailableBarcode, true)
+            xhr.send(JSON.stringify({
+                "list_barcode": dataBarcode
+            }))
+
+            xhr.onload = function () {
+                var data = JSON.parse(this.responseText)
+                if (data.code != 200 || data.msg != "OK") {
+                    return alert("failed check barcode")
+                }
+                if (data.data_barcode.length == 0) {
+                    return alert("data barcode tidak tersedia untuk di print")
+                }
+
+                document.getElementById("container-main").style.display = "none"
+                document.getElementById("body").style.backgroundColor = "white"
+                var cPrint = document.getElementById("container-print")
+                for (var i = 0; i < cb.length; i++) {
+                    var barcodeAvailable = cb[i].children[0].children[1]
+
+                    if (barcodeAvailable.id == data.data_barcode[i].no_mesin + data.data_barcode[i].code) {
+                        cb[i].children[0].style.border = "none"
+                        cPrint.appendChild(cb[i].children[0])
+                        continue
+                    }
+                }
+
+                window.onafterprint = function() {
+                    window.location.reload()
+                }
+
+                window.print()
+                return
+            }
+
+            xhr.onerror = function () {
+                alert("Something wrong!!\nplease reload your browser or contact your IT support...")
+                return
+            }
         }
     </script>
 </body>

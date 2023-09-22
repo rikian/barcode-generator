@@ -2,6 +2,7 @@ package service
 
 import (
 	"barcode/db"
+	"barcode/models/entities"
 	"barcode/models/web"
 	"context"
 
@@ -20,20 +21,15 @@ type ServiceBarcode struct {
 	repo   *db.BarcodeRepository
 }
 
-func (s *ServiceBarcode) CheckBarcode(ctx context.Context, req *web.RequestCheckBarcode, res *web.ResponseCheckBarcode) {
-	barcodeMatcher := s.repo.CheckBarcode(ctx, req.Data)
+func (s *ServiceBarcode) CheckBarcode(ctx context.Context, req [][]string, res *web.ResponseCheckBarcode) {
+	res.Data = make([]*entities.Barcode, len(req))
+	barcodeMatcher := s.repo.CheckBarcode(ctx, req)
 	swap := 0
-
-	for i := 0; i < len(req.Data); i++ {
+	for i := 0; i < len(req); i++ {
 		matcher := false
 		for j := swap; j < len(barcodeMatcher); j++ {
-			if barcodeMatcher[j].Code == req.Data[i] {
-				res.Data[i] = &web.DataResponseCheckBarcode{
-					Code:    barcodeMatcher[j].Code,
-					Printed: barcodeMatcher[j].Printed,
-					Scanned: barcodeMatcher[j].Scanned,
-				}
-
+			if barcodeMatcher[j].NoMes == req[i][0] && barcodeMatcher[j].Code == req[i][1] {
+				res.Data[i] = barcodeMatcher[j]
 				barcodeMatcher[swap], barcodeMatcher[j] = barcodeMatcher[j], barcodeMatcher[swap]
 				swap += 1
 				matcher = true
@@ -45,13 +41,91 @@ func (s *ServiceBarcode) CheckBarcode(ctx context.Context, req *web.RequestCheck
 			continue
 		}
 
-		res.Data[i] = &web.DataResponseCheckBarcode{
-			Code:    req.Data[i],
+		res.Data[i] = &entities.Barcode{
+			NoMes:   req[i][0],
+			Code:    req[i][1],
 			Printed: false,
 			Scanned: false,
 		}
 	}
 
+	res.Code = 200
+	res.Msg = "OK"
+}
+
+func (s *ServiceBarcode) UpdateBarcode(ctx context.Context, req [][]string, res *web.ResponseUpdateBarcode) {
+	res.Data = nil
+	dataBarcodeForInsert := []*entities.Barcode{}
+	barcodeMatcher := s.repo.CheckBarcode(ctx, req)
+	swap := 0
+
+	for i := 0; i < len(req); i++ {
+		matcher := false
+		for j := swap; j < len(barcodeMatcher); j++ {
+			if barcodeMatcher[j].NoMes == req[i][0] && barcodeMatcher[j].Code == req[i][1] && barcodeMatcher[j].Printed {
+				barcodeMatcher[swap], barcodeMatcher[j] = barcodeMatcher[j], barcodeMatcher[swap]
+				swap += 1
+				matcher = true
+				break
+			}
+		}
+
+		if matcher {
+			continue
+		}
+
+		dataBarcodeForInsert = append(dataBarcodeForInsert, &entities.Barcode{
+			NoMes:   req[i][0],
+			Code:    req[i][1],
+			Printed: true,
+			Scanned: false,
+		})
+	}
+
+	// insert db for data not matcher
+	if len(dataBarcodeForInsert) != 0 {
+		s.repo.InsertBarcode(ctx, dataBarcodeForInsert)
+	}
+
+	res.Code = 200
+	res.Msg = "OK"
+}
+
+func (s *ServiceBarcode) UpdateBarcodeAvailableOnly(ctx context.Context, req [][]string, res *web.ResponseUpdateAvailableBarcode) {
+	dataBarcodeForInsert := []*entities.Barcode{}
+	barcodeMatcher := s.repo.CheckBarcode(ctx, req)
+	swap := 0
+
+	for i := 0; i < len(req); i++ {
+		matcher := false
+		for j := swap; j < len(barcodeMatcher); j++ {
+			if barcodeMatcher[j].NoMes == req[i][0] && barcodeMatcher[j].Code == req[i][1] {
+				barcodeMatcher[swap], barcodeMatcher[j] = barcodeMatcher[j], barcodeMatcher[swap]
+				swap += 1
+				matcher = true
+				break
+			}
+		}
+
+		if matcher {
+			continue
+		}
+
+		// data barcode available for printed
+		dataBarcodeForInsert = append(dataBarcodeForInsert, &entities.Barcode{
+			NoMes:   req[i][0],
+			Code:    req[i][1],
+			Printed: true,
+			Scanned: false,
+		})
+	}
+
+	// insert db for data not matcher
+	if len(dataBarcodeForInsert) != 0 {
+		s.repo.InsertBarcode(ctx, dataBarcodeForInsert)
+	}
+
+	res.Data = dataBarcodeForInsert
 	res.Code = 200
 	res.Msg = "OK"
 }
